@@ -1,6 +1,9 @@
 import Foundation
 import MultipeerConnectivity
 import Combine
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// Peer-to-peer file sharing over MultipeerConnectivity (Wi-Fi, peer-to-peer Wi-Fi, Bluetooth).
 /// No iCloud or internet service is involved. Both devices must run the app.
@@ -22,7 +25,12 @@ final class CollaborationManager: NSObject, ObservableObject {
     private var browser: MCNearbyServiceBrowser?
 
     override init() {
-        let name = Host.current().localizedName ?? "WheelClode"
+        let name: String
+        #if canImport(UIKit)
+        name = UIDevice.current.name
+        #else
+        name = Host.current().localizedName ?? "Device"
+        #endif
         myPeerID = MCPeerID(displayName: String(name.prefix(60)))
         session = MCSession(peer: myPeerID, securityIdentity: nil, encryptionPreference: .required)
         super.init()

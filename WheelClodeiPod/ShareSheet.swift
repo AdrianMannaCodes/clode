@@ -15,9 +15,12 @@ struct ShareSheet: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 #else
+/// Fallback for platforms without UIKit. Export is not available here.
 struct ShareSheet: View {
     let items: [Any]
-    init(items: [Any], applicationActivities: [Any]? = nil) { self.items = items }
-    var body: some View { Text("Export is available on iOS and iPadOS.") }
+
+    var body: some View {
+        Text("Export is available on iOS and iPadOS.")
+    }
 }
 #endif
