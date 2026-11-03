@@ -21,8 +21,18 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "WheelClodeiPod",
-            path: "WheelClodeiPod",
-            exclude: ["FileTypes+Examples.md"]
+            path: ".",
+            exclude: ["README.md", "FileTypes+Examples.md"],
+            sources: [
+                "WheelClodeiPodApp.swift",
+                "ContentView.swift",
+                "iPodWheelView.swift",
+                "FileTypes.swift",
+                "FileLibrary.swift",
+                "CollaborationManager.swift",
+                "CollaborationView.swift",
+                "ShareSheet.swift"
+            ]
         )
     ]
 )
